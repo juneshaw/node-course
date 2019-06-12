@@ -6,7 +6,6 @@ const getNotes = function() {
 }
 
 const addNote = function(title, body) {
-    console.log('Adding the note: ', title, body)
     const notes = loadNotes()
     const duplicateNotes = notes.filter(function(note) {
         return note.title === title
@@ -17,8 +16,9 @@ const addNote = function(title, body) {
             body: body
         })
         saveNotes(notes)
+        console.log(chalk.green.inverse('New note added'))
     } else {
-        console.log('Note already exists');
+        console.log(chalk.red.inverse('Note already exists'));
     }
 }
 
@@ -44,12 +44,12 @@ const removeNote = function(title) {
     const notesToKeep = notes.filter(function(note) {
         return note.title !== title
     })
-    saveNotes(notesToKeep)
-
+    
     if (notesToKeep.length === notes.length) {
-        console.log(chalk.bgRed('No note found!'))
+        console.log(chalk.red.inverse('No note found!'))
     } else {
-        console.log(chalk.bgGreen('Note removed!'))
+        saveNotes(notesToKeep)
+        console.log(chalk.green.inverse('Note removed!'))
     }
 }
 
