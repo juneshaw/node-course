@@ -11,11 +11,15 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    res.send('About')
+    res.send('<h1>About</h1>')
 })
 
 app.get('/weather', (req, res) => {
-    res.send('Your weather')
+    const weather = {
+        forecast: 'Cloudy',
+        location: 'Evergreen'
+    }
+    res.send(weather)
 })
 
 app.listen(3000, () => {
