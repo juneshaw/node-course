@@ -2,9 +2,13 @@ const request = require('request')
 const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 
-geocode('Boston', (error, response) => {
-    if (error) {
-        return console.log('Error getting location')
+if (process.argv.length < 3) {
+    console.log('Please enter location to forecast')
+} else {
+    const location = process.argv[2]
+    geocode(location, (error, response) => {
+        if (error) {
+            return console.log('Error getting location')
     }
     const latitude = response.latitude
     const longitude = response.longitude
@@ -16,4 +20,5 @@ geocode('Boston', (error, response) => {
         }
         console.log(`${forecastData.body.daily.data[0].summary}  It is currently ${forecastData.body.currently.temperature} degrees out.  There is a ${forecastData.body.currently.precipProbability}% chance of rain.`)
     })
-})
+    })
+}
