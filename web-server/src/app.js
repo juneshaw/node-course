@@ -60,16 +60,8 @@ app.get('/weather', (req, res) => {
             precipProbability,
             location: location
         })
-        // console.log(`Latitude: ${latitude} Longitude: ${longitude} Location: ${location}`)
-        // console.log(`${forecastData.daily.data[0].summary}  It is currently ${temperature} degrees out.  There is a ${precipProbability}% chance of rain.`)
     })
     })
-
-    // res.send({
-    //     forecast: 'It is snowing',
-    //     location: 'Philadelphia',
-    //     address: req.query.address
-    // })
 })
 
 app.get('/help/*', (req, res) => {
