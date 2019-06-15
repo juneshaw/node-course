@@ -48,17 +48,15 @@ app.get('/weather', (req, res) => {
 
     geocode(req.query.address, (error, { latitude, longitude, location }) => {
         if (error) {
-            return console.log('Error getting location')
-    }
-    forecast(latitude, longitude, (error, forecastData) => {
-        if (error) {
-            return console.log('Error getting forecast')
+            return res.send({ error })
         }
-        const { temperature, precipProbability } = forecastData.currently
+        forecast(latitude, longitude, (error, forecastData) => {
+            if (error) {
+                return res.send({ error })
+        }
         res.send({
-            temperature,
-            precipProbability,
-            location: location
+            forecastData,
+            location
         })
     })
     })

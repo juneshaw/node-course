@@ -14,9 +14,13 @@ if (process.argv.length < 3) {
         if (error) {
             return console.log('Error getting forecast')
         }
-        const { temperature, precipProbability } = forecastData.currently
-        console.log(`Latitude: ${latitude} Longitude: ${longitude} Location: ${location}`)
-        console.log(`${forecastData.daily.data[0].summary}  It is currently ${temperature} degrees out.  There is a ${precipProbability}% chance of rain.`)
+        res.send({
+            forecastData,
+            location
+        })
+        // const { temperature, precipProbability } = forecastData.currently
+        // console.log(`Latitude: ${latitude} Longitude: ${longitude} Location: ${location}`)
+        // console.log(`${forecastData.daily.data[0].summary}  It is currently ${temperature} degrees out.  There is a ${precipProbability}% chance of rain.`)
     })
     })
 }
